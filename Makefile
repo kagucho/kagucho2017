@@ -31,7 +31,7 @@ lint-node: ./node_modules/.bin/eslint node.eslintrc.json node.eslintignore
 	./node_modules/.bin/eslint -c node.eslintrc.json --ignore-path node.eslintignore .
 
 watch:
-	cd play/main && $(abspath ./node_modules/.bin/webpack) --watch & cd play/renderer && $(abspath ./node_modules/.bin/webpack) --watch
+	cd play/main && $(abspath ./node_modules/.bin/webpack) --mode=development --watch & cd play/renderer && $(abspath ./node_modules/.bin/webpack) --mode=development --watch
 
 target-kagucho2017: blob/kagucho2017
 	mkdir -p output
@@ -40,10 +40,10 @@ target-kagucho2017: blob/kagucho2017
 target-play: target-play-main target-play-renderer
 
 target-play-main: ./node_modules/.bin/webpack play/main
-	cd play/main && $(abspath ./node_modules/.bin/webpack)
+	cd play/main && $(abspath ./node_modules/.bin/webpack) --mode=production
 
 target-play-renderer: ./node_modules/.bin/webpack play/renderer
-	cd play/renderer && $(abspath node_modules/.bin/webpack)
+	cd play/renderer && $(abspath node_modules/.bin/webpack) --mode=production
 
 output/kagucho2017/win32-x64: output/intermediate/electron-v3.0.6-win32-x64.zip app.json
 	mkdir -p $@/resources/app

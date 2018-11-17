@@ -35,12 +35,12 @@ export default {
 
   oncreate() {
     document.addEventListener('webkitfullscreenchange',
-                              this.listenFullscreenchange);
+        this.listenFullscreenchange);
   },
 
   onbeforeremove() {
     document.removeEventListener('webkitfullscreenchange',
-                                 this.listenFullscreenchange);
+        this.listenFullscreenchange);
   },
 
   select(entry) {
@@ -94,7 +94,7 @@ export default {
         height: '100%',
       },
     },
-      m('div', {style: {display: 'flex', flex: '1'}},
+    m('div', {style: {display: 'flex', flex: '1'}},
         this.fullscreen ? null : m('ul', {
           style: {
             background: '#f8f8f8',
@@ -106,21 +106,21 @@ export default {
             width: '32ch',
           },
         },
-          this.parent && m('li',
+        this.parent && m('li',
             {className: 'component-li', onclick: this.up.bind(this)},
             m('i', {className: 'material-icons', style: {color: '#08c'}},
-              'arrow_back'),
+                'arrow_back'),
             m('div', {style: {paddingLeft: '1ch'}},
-              '戻る')),
-          this.directory.entries.map((entry) =>
-            m('li', {
-              className: 'component-li',
-              onclick: this.select.bind(this, entry),
-            },
-              m(entry.Icon),
-              m('div', {style: {paddingLeft: '1ch'}},
-                m('div', entry.title),
-                m('div', {className: 'component-li-author'}, entry.author))))),
+                '戻る')),
+        this.directory.entries.map((entry) =>
+          m('li', {
+            className: 'component-li',
+            onclick: this.select.bind(this, entry),
+          },
+          m(entry.Icon),
+          m('div', {style: {paddingLeft: '1ch'}},
+              m('div', entry.title),
+              m('div', {className: 'component-li-author'}, entry.author))))),
         m('main', {
           onmousemove: () => {
             if (this.fullscreen) {
@@ -135,16 +135,16 @@ export default {
           },
           style: {flex: '1'},
         }, m(this.entry.Body, entryAttrs))),
-      m('div', {
-        style: this.fullscreen ? {
-          borderTop: '0',
-          maxHeight: '0',
-          transition: 'max-height 1s 4s',
-        } : {
-          borderTop: '1px solid #eee',
-          maxHeight: '32px',
-        },
-        oncreate: ({dom}) => this.controls = dom,
-      }, m(this.entry.Controls, entryAttrs)));
+    m('div', {
+      style: this.fullscreen ? {
+        borderTop: '0',
+        maxHeight: '0',
+        transition: 'max-height 1s 4s',
+      } : {
+        borderTop: '1px solid #eee',
+        maxHeight: '32px',
+      },
+      oncreate: ({dom}) => this.controls = dom,
+    }, m(this.entry.Controls, entryAttrs)));
   },
 };

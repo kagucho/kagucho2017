@@ -24,11 +24,11 @@ const url = require('url');
 
 electron.app.on('ready', () => {
   const window = new electron.BrowserWindow(
-    {icon: path.join(__dirname, icon), title: '神楽坂一丁目通信局 作品一覧'});
+      {icon: path.join(__dirname, icon), title: '神楽坂一丁目通信局 作品一覧'});
 
   window.loadURL(
-    url.format(
-      {pathname: path.join(__dirname, index), protocol: 'file:'}));
+      url.format(
+          {pathname: path.join(__dirname, index), protocol: 'file:'}));
 });
 
 electron.app.on('window-on-closed', electron.app.quit.bind(electron.app));

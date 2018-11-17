@@ -15,18 +15,22 @@
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+module.exports = (env, {mode}) => {
+  const config = {
+    module: {
+      rules: [
+        {
+          test: /\.(eot|gif|html|jpg|png|svg|ttf|woff|woff2)$/,
+          use: 'file-loader',
+        },
+      ],
+    },
+    node: {__dirname: false},
+  };
 
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.(eot|gif|html|jpg|png|svg|ttf|woff|woff2)$/,
-        use: 'file-loader',
-      },
-    ],
-  },
-  node: {__dirname: false},
-  plugins: process.env.NODE_ENV == 'production' ?
-    [new UglifyJSPlugin({uglifyOptions: {ecma: 8}})] : [],
+  if (mode == 'development') {
+    config.devtool = 'source-map';
+  }
+
+  return config;
 };

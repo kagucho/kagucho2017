@@ -27,23 +27,23 @@ class DirectoryEntry {
     this.Body = {
       view() {
         return m('div',
-          {style: {display: 'flex', flexDirection: 'column', height: '100%'}},
-          m('h1', {style: {margin: '0 1ch'}}, title),
-          m('p', {style: {color: '#999', margin: '1ch 1ch 1em 4ch'}}, author),
-          background && m('div', {
-            style: {
-              background: `url(${background}) no-repeat`,
-              backgroundSize: 'contain',
-              flex: '1',
-            },
-          }));
+            {style: {display: 'flex', flexDirection: 'column', height: '100%'}},
+            m('h1', {style: {margin: '0 1ch'}}, title),
+            m('p', {style: {color: '#999', margin: '1ch 1ch 1em 4ch'}}, author),
+            background && m('div', {
+              style: {
+                background: `url(${background}) no-repeat`,
+                backgroundSize: 'contain',
+                flex: '1',
+              },
+            }));
       },
     };
 
     this.Icon = {
       view() {
         return m('i', {className: 'material-icons', style: {color: iconColor}},
-                 icon);
+            icon);
       },
     };
   }
@@ -52,9 +52,9 @@ class DirectoryEntry {
 DirectoryEntry.prototype.Controls = {
   view() {
     return m('p', {style: {flex: '0', display: 'flex', margin: '0'}},
-      m('i', {className: 'material-icons', style: {marginRight: '0.1ch'}},
-        'info_outline'),
-      '項目を選択してください');
+        m('i', {className: 'material-icons', style: {marginRight: '0.1ch'}},
+            'info_outline'),
+        '項目を選択してください');
   },
 };
 

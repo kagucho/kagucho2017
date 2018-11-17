@@ -17,5 +17,6 @@
 
 import Component from './component';
 import m from 'mithril';
+import './index.css';
 
 m.mount(document.body, Component);

@@ -35,8 +35,8 @@ export default class {
               const {audioAnalyserNode} = canvas;
 
               audioAnalyserNode.context
-                               .createMediaStreamSource(stream)
-                               .connect(audioAnalyserNode);
+                  .createMediaStreamSource(stream)
+                  .connect(audioAnalyserNode);
 
               canvas.start();
             }).catch((error) => alert(`音声の取得に失敗しました。
@@ -49,22 +49,24 @@ ${error}`));
     this.Controls = {
       view({attrs}) {
         return m('div', {style: {display: 'flex'}},
-          m('p', {style: {display: 'flex', flex: '1', margin: '0'}},
-            m('i', {className: 'material-icons', style: {marginRight: '0.1ch'}},
-              'info_outline'),
-           '音声を可視化します。'),
-          m('button', {
-            className: 'material-icons',
-            style: {background: '#fff', border: '0'},
-            onclick: attrs.onfullscreentoggle,
-          }, attrs.fullscreen ? 'fullscreen_exit' : 'fullscreen'));
+            m('p', {style: {display: 'flex', flex: '1', margin: '0'}},
+                m('i', {
+                  className: 'material-icons',
+                  style: {marginRight: '0.1ch'},
+                }, 'info_outline'),
+                '音声を可視化します。'),
+            m('button', {
+              className: 'material-icons',
+              style: {background: '#fff', border: '0'},
+              onclick: attrs.onfullscreentoggle,
+            }, attrs.fullscreen ? 'fullscreen_exit' : 'fullscreen'));
       },
     };
 
     this.Icon = {
       view: () => {
         return m('i', {className: 'material-icons', style: {color: '#e26'}},
-          'music_note');
+            'music_note');
       },
     };
   }

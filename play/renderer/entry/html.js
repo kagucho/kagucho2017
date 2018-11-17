@@ -43,7 +43,7 @@ class HtmlEntry {
 HtmlEntry.prototype.Icon = {
   view() {
     return m('i', {className: 'material-icons', style: {color: '#45a'}},
-             'description');
+        'description');
   },
 };
 

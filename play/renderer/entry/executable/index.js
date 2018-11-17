@@ -42,123 +42,127 @@ class ExecutableEntry {
 
       view() {
         return m('div',
-          {style: {display: 'flex', flexDirection: 'column', height: '100%'}},
-          m('h1', {style: {margin: '0 1ch'}}, title),
-          m('p', {style: {color: '#999', margin: '1ch 1ch 1em 4ch'}}, author),
-          m('button', {
-            className: 'entry-executable-button',
-            onclick() {
-              childProcess.spawn(src, {cwd: path.dirname(src), detached: true})
-                .on('error', (error) => alert(`${title}の起動に失敗しました。
+            {style: {display: 'flex', flexDirection: 'column', height: '100%'}},
+            m('h1', {style: {margin: '0 1ch'}}, title),
+            m('p', {style: {color: '#999', margin: '1ch 1ch 1em 4ch'}}, author),
+            m('button', {
+              className: 'entry-executable-button',
+              onclick() {
+                childProcess.spawn(src, {
+                  cwd: path.dirname(src),
+                  detached: true,
+                }).on('error', (error) => alert(`${title}の起動に失敗しました。
 ${error}`));
-            },
-          }, 'このゲームを遊ぶ'),
-          m('div', {style: {marginTop: '1em'}},
-            m('button', {
-              onclick: this.show.bind(this, 'description'),
-              style: {
-                background: this.shown == 'description' ? '#38b' : '#fff',
-                border: '0',
-                borderTop: '1px solid #eee',
-                color: this.shown == 'description' ? '#fff' : '#000',
-                fontSize: '1em',
-                width: '16ch',
-                height: '2em',
               },
-            }, '説明'),
-            m('button', {
-              onclick: this.show.bind(this, 'photos'),
-              style: {
-                background: this.shown == 'photos' ? '#38b' : '#fff',
-                border: '1px solid #eee',
-                borderBottom: '0',
-                color: this.shown == 'photos' ? '#fff' : '#000',
-                fontSize: '1em',
-                width: '20ch',
-                height: '2em',
+            }, 'このゲームを遊ぶ'),
+            m('div', {style: {marginTop: '1em'}},
+                m('button', {
+                  onclick: this.show.bind(this, 'description'),
+                  style: {
+                    background: this.shown == 'description' ? '#38b' : '#fff',
+                    border: '0',
+                    borderTop: '1px solid #eee',
+                    color: this.shown == 'description' ? '#fff' : '#000',
+                    fontSize: '1em',
+                    width: '16ch',
+                    height: '2em',
+                  },
+                }, '説明'),
+                m('button', {
+                  onclick: this.show.bind(this, 'photos'),
+                  style: {
+                    background: this.shown == 'photos' ? '#38b' : '#fff',
+                    border: '1px solid #eee',
+                    borderBottom: '0',
+                    color: this.shown == 'photos' ? '#fff' : '#000',
+                    fontSize: '1em',
+                    width: '20ch',
+                    height: '2em',
+                  },
+                }, 'スクリーンショット')),
+            {
+              description: m('iframe', {
+                src: description,
+                style: {
+                  borderTop: '1px solid #38b',
+                  borderLeft: '0',
+                  borderRight: '0',
+                  borderBottom: '0',
+                  width: '100%',
+                  height: '100%',
+                },
+              }),
+              photos: m('div', {
+                style: {
+                  borderTop: '1px solid #38b',
+                  flex: '1',
+                  height: '100%',
+                  position: 'relative',
+                },
               },
-            }, 'スクリーンショット')),
-          {
-            description: m('iframe', {
-              src: description,
-              style: {
-                borderTop: '1px solid #38b',
-                borderLeft: '0',
-                borderRight: '0',
-                borderBottom: '0',
-                width: '100%',
-                height: '100%',
-              },
-            }),
-            photos: m('div', {
-              style: {
-                borderTop: '1px solid #38b',
-                flex: '1',
-                height: '100%',
-                position: 'relative',
-              },
-            },
               m('div', {
                 className: 'pswp',
                 tabindex: '-1',
                 oncreate: ({dom}) => {
                   this.photoSwipe = new PhotoSwipe(
-                    dom,
-                    PhotoSwipeUIDefault,
-                    photos, {
-                      modal: false,
-                      closeOnScroll: false,
-                      focus: false,
-                    });
+                      dom,
+                      PhotoSwipeUIDefault,
+                      photos, {
+                        modal: false,
+                        closeOnScroll: false,
+                        focus: false,
+                      });
 
                   this.photoSwipe.init();
                 },
                 onremove: this.photoSwipe &&
                             this.photoSwipe.close.bind(this.photoSwipe),
               },
-                m('div', {className: 'pswp__bg'}),
-                m('div', {className: 'pswp__scroll-wrap'},
+              m('div', {className: 'pswp__bg'}),
+              m('div', {className: 'pswp__scroll-wrap'},
                   m('div', {className: 'pswp__container'},
-                    m('div', {className: 'pswp__item'}),
-                    m('div', {className: 'pswp__item'}),
-                    m('div', {className: 'pswp__item'})),
+                      m('div', {className: 'pswp__item'}),
+                      m('div', {className: 'pswp__item'}),
+                      m('div', {className: 'pswp__item'})),
                   m('div', {className: 'pswp__ui pswp__ui--hidden'},
-                    m('div', {className: 'pswp__top-bar'},
-                      m('div', {className: 'pswp__counter'}),
+                      m('div', {className: 'pswp__top-bar'},
+                          m('div', {className: 'pswp__counter'}),
+                          m('button', {
+                            className: 'pswp__button pswp__button--share',
+                            title: 'Share',
+                          }),
+                          m('button', {
+                            className: 'pswp__button pswp__button--fs',
+                            title: 'Toggle fullscreen',
+                          }),
+                          m('button', {
+                            className: 'pswp__button pswp__button--zoom',
+                            title: 'Zoom in/out',
+                          }),
+                          m('div', {className: 'pswp__preloader'},
+                              m('div', {className: 'pswp__preloader__icn'},
+                                  m('div', {className: 'pswp__preloader_cut'},
+                                      m('div', {
+                                        className: 'pswp__preloader__donut',
+                                      }))))),
+                      m('div', {
+                        className: [
+                          'pswp__share-modal',
+                          'pswp__share-modal--hidden',
+                          'pswp__single_tap',
+                        ].join(' '),
+                      }, m('div', {className: 'pswp__share-tooltip'})),
                       m('button', {
-                        className: 'pswp__button pswp__button--share',
-                        title: 'Share',
+                        className: 'pswp_button pswp__button--arrow--left',
+                        title: 'Previous (arrow left)',
                       }),
                       m('button', {
-                        className: 'pswp__button pswp__button--fs',
-                        title: 'Toggle fullscreen',
+                        className: 'pswp_button pswp__button--arrow--right',
+                        title: 'Next (arrow right)',
                       }),
-                      m('button', {
-                        className: 'pswp__button pswp__button--zoom',
-                        title: 'Zoom in/out',
-                      }),
-                      m('div', {className: 'pswp__preloader'},
-                        m('div', {className: 'pswp__preloader__icn'},
-                          m('div', {className: 'pswp__preloader_cut'},
-                            m('div', {className: 'pswp__preloader__donut'}))))),
-                    m('div', {
-                      className: [
-                        'pswp__share-modal',
-                        'pswp__share-modal--hidden',
-                        'pswp__single_tap',
-                      ].join(' '),
-                    }, m('div', {className: 'pswp__share-tooltip'})),
-                    m('button', {
-                      className: 'pswp_button pswp__button--arrow--left',
-                      title: 'Previous (arrow left)',
-                    }),
-                    m('button', {
-                      className: 'pswp_button pswp__button--arrow--right',
-                      title: 'Next (arrow right)',
-                    }),
-                    m('div', {className: 'pswp__caption'},
-                      m('div', {className: 'pswp__caption__center'})))))),
-          }[this.shown]);
+                      m('div', {className: 'pswp__caption'},
+                          m('div', {className: 'pswp__caption__center'})))))),
+            }[this.shown]);
       },
     };
   }
@@ -167,16 +171,16 @@ ${error}`));
 ExecutableEntry.prototype.Controls = {
   view() {
     return m('p', {style: {display: 'flex', margin: '0'}},
-      m('i', {className: 'material-icons', style: {marginRight: '0.1ch'}},
-        'info_outline'),
-      'ゲームを起動すると新しいウィンドウを開きます。');
+        m('i', {className: 'material-icons', style: {marginRight: '0.1ch'}},
+            'info_outline'),
+        'ゲームを起動すると新しいウィンドウを開きます。');
   },
 };
 
 ExecutableEntry.prototype.Icon = {
   view() {
     return m('i', {className: 'material-icons', style: {color: '#f90'}},
-             'open_in_new');
+        'open_in_new');
   },
 };
 

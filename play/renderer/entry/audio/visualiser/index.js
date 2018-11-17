@@ -56,10 +56,10 @@ export default {
         const context = new AudioContext;
 
         this.canvas = new MusicvideoGenerator.Canvas(
-          context,
-          this.generateParams(),
-          null,
-          () => attrs.getCurrentTime(this.canvas));
+            context,
+            this.generateParams(),
+            null,
+            () => attrs.getCurrentTime(this.canvas));
 
         this.canvas.audioAnalyserNode.connect(context.destination);
         this.canvas.initialize();

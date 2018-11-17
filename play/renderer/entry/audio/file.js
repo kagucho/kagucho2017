@@ -36,7 +36,7 @@ export default class {
 
             if (this._audio) {
               audioAnalyserNode.createMediaElementSource(dom)
-                               .connect(audioAnalyserNode);
+                  .connect(audioAnalyserNode);
 
               if (!this._audio.paused) {
                 canvas.start();
@@ -53,61 +53,61 @@ export default class {
     this.Controls = {
       view: ({attrs}) => {
         return m('div', {style: {display: 'flex'}},
-          m('audio', {
-            controls: true,
-            src,
-            style: {width: '100%'},
-            oncreate: ({dom}) => {
-              this._audio = dom;
+            m('audio', {
+              controls: true,
+              src,
+              style: {width: '100%'},
+              oncreate: ({dom}) => {
+                this._audio = dom;
 
-              if (this._canvas) {
-                const {audioAnalyserNode} = this._canvas;
+                if (this._canvas) {
+                  const {audioAnalyserNode} = this._canvas;
 
-                audioAnalyserNode.context
-                                 .createMediaElementSource(dom)
-                                 .connect(audioAnalyserNode);
-              }
+                  audioAnalyserNode.context
+                      .createMediaElementSource(dom)
+                      .connect(audioAnalyserNode);
+                }
 
-              this._audio.play();
-            },
-            onremove: () => {
-              this._audio.pause();
-              this._audio = null;
-            },
-            onplaying: () => {
-              if (this._canvas) {
-                this._canvas.stop();
-                this._canvas.start();
-              }
-            },
-            onpause: () => {
-              if (this._canvas) {
-                this._canvas.stop();
-              }
-            },
-            onseeking: () => {
-              if (this._canvas) {
-                this._canvas.stop();
-                this._canvas.initialize();
-              }
-            },
-            onseeked: () => {
-              if (this._canvas) {
-                this._canvas.stop();
-                this._canvas.start();
-              }
-            },
-            onwaiting: () => {
-              if (this._canvas) {
-                this._canvas.stop();
-              }
-            },
-          }),
-          m('button', {
-            className: 'material-icons',
-            style: {background: '#fff', border: '0'},
-            onclick: attrs.onfullscreentoggle,
-          }, attrs.fullscreen ? 'fullscreen_exit' : 'fullscreen'));
+                this._audio.play();
+              },
+              onremove: () => {
+                this._audio.pause();
+                this._audio = null;
+              },
+              onplaying: () => {
+                if (this._canvas) {
+                  this._canvas.stop();
+                  this._canvas.start();
+                }
+              },
+              onpause: () => {
+                if (this._canvas) {
+                  this._canvas.stop();
+                }
+              },
+              onseeking: () => {
+                if (this._canvas) {
+                  this._canvas.stop();
+                  this._canvas.initialize();
+                }
+              },
+              onseeked: () => {
+                if (this._canvas) {
+                  this._canvas.stop();
+                  this._canvas.start();
+                }
+              },
+              onwaiting: () => {
+                if (this._canvas) {
+                  this._canvas.stop();
+                }
+              },
+            }),
+            m('button', {
+              className: 'material-icons',
+              style: {background: '#fff', border: '0'},
+              onclick: attrs.onfullscreentoggle,
+            }, attrs.fullscreen ? 'fullscreen_exit' : 'fullscreen'));
       },
     };
 
