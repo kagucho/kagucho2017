@@ -1,6 +1,6 @@
-# kagucho2017
+# play-kagucho
 
-kagucho2017 is the template for the disc which will be distributed in Ridaisai,
+play-kagucho is the template for the disc which will be distributed in Ridaisai,
 the university festival of the Tokyo University Science.
 
 ## Development
@@ -26,9 +26,9 @@ npm install
 
 Your blobs should be at `blob`.
 
-#### `blob/kagucho2017`
+#### `blob/kagucho2018`
 
-Files in `blob/kagucho2017` will be copied to the disc.
+Files in `blob/kagucho2018` will be copied to the disc.
 
 `play` and `win32-x64` directory are reserved and therefore you should not
 make files with same name in the directory.
@@ -129,7 +129,7 @@ After running the preparation task, just run:
 make
 ```
 
-And you'll have the result at `output/kagucho2017.iso`.
+And you'll have the result at `output/kagucho2018.iso`.
 
 ### Debugging
 

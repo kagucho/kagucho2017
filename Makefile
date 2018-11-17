@@ -13,11 +13,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-output/kagucho2017.iso: target-kagucho2017 target-play output/kagucho2017/win32-x64
-	mkisofs -J -V KAGUCHO2017 -copyright COPYRIGHT.TXT -abstract ABSTRACT.TXT -o $@ -udf output/kagucho2017
+output/kagucho2018.iso: target-kagucho2018 target-play output/kagucho2018/win32-x64
+	mkisofs -J -V KAGUCHO2018 -copyright COPYRIGHT.TXT -abstract ABSTRACT.TXT -o $@ -udf output/kagucho2018
 
 clean:
-	rm -rf output/kagucho2017 output/kagucho2017.iso
+	rm -rf output/kagucho2018 output/kagucho2018.iso
 
 distclean:
 	rm -rf output
@@ -33,7 +33,7 @@ lint-node: ./node_modules/.bin/eslint node.eslintrc.json node.eslintignore
 watch:
 	cd play/main && $(abspath ./node_modules/.bin/webpack) --mode=development --watch & cd play/renderer && $(abspath ./node_modules/.bin/webpack) --mode=development --watch
 
-target-kagucho2017: blob/kagucho2017
+target-kagucho2018: blob/kagucho2018
 	mkdir -p output
 	rsync -r $< output
 
@@ -45,7 +45,7 @@ target-play-main: ./node_modules/.bin/webpack play/main
 target-play-renderer: ./node_modules/.bin/webpack play/renderer
 	cd play/renderer && $(abspath node_modules/.bin/webpack) --mode=production
 
-output/kagucho2017/win32-x64: output/intermediate/electron-v3.0.6-win32-x64.zip app.json
+output/kagucho2018/win32-x64: output/intermediate/electron-v3.0.6-win32-x64.zip app.json
 	mkdir -p $@/resources/app
 	unzip -d $@ output/intermediate/electron-v3.0.6-win32-x64.zip
 	cp app.json $@/resources/app/package.json
@@ -54,5 +54,5 @@ output/intermediate/electron-v3.0.6-win32-x64.zip:
 	mkdir -p $(dir $@)
 	wget -O $@ https://github.com/electron/electron/releases/download/v3.0.6/electron-v3.0.6-win32-x64.zip
 
-.PHONY: clean distclean lint lint-electron lint-node target-kagucho2017	\
+.PHONY: clean distclean lint lint-electron lint-node target-kagucho2018	\
 	target-play target-play-main target-play-renderer watch

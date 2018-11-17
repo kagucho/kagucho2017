@@ -25,7 +25,7 @@ module.exports = (env, argv) => {
     entry: '.',
     output: {
       filename: '[name].js',
-      path: path.join(__dirname, '../../output/kagucho2017/play/renderer'),
+      path: path.join(__dirname, '../../output/kagucho2018/play/renderer'),
     },
     target: 'electron-renderer',
     plugins: [new MiniCssExtractPlugin('[name].css')],

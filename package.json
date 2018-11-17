@@ -2,21 +2,21 @@
   "name": "play-kagucho",
   "version": "1.0.1",
   "description": "A player of Kagucho's works",
-  "main": "kagucho2017/play/main/index.js",
+  "main": "kagucho2018/play/main/index.js",
   "scripts": {
-    "start": "electron output/kagucho2017/play/main",
+    "start": "electron output/kagucho2018/play/main",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kagucho/kagucho2017.git"
+    "url": "git+https://github.com/kagucho/play-kagucho.git"
   },
   "author": "Akihiko Odaki <akihiko.odaki.4i@stu.hosei.ac.jp>",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/kagucho/kagucho2017/issues"
+    "url": "https://github.com/kagucho/play-kagucho/issues"
   },
-  "homepage": "https://github.com/kagucho/kagucho2017#readme",
+  "homepage": "https://github.com/kagucho/play-kagucho#readme",
   "dependencies": {
     "electron": "^3.0.9",
     "material-design-icons": "^3.0.1",

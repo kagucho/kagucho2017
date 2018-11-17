@@ -22,7 +22,7 @@ module.exports = (env, argv) => Object.assign({
   entry: '.',
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, '../../output/kagucho2017/play'),
+    path: path.join(__dirname, '../../output/kagucho2018/play'),
   },
   target: 'electron-main',
 }, commonWebpackConfig(env, argv));
