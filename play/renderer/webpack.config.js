@@ -22,10 +22,10 @@ const path = require('path');
 
 module.exports = (env, argv) => {
   const config = Object.assign({
-    entry: '.',
+    entry: { renderer: '.' },
     output: {
       filename: '[name].js',
-      path: path.join(__dirname, '../../output/kagucho2018/play/renderer'),
+      path: path.join(__dirname, '../../output/kagucho2018/play'),
     },
     target: 'electron-renderer',
     plugins: [new MiniCssExtractPlugin('[name].css')],
