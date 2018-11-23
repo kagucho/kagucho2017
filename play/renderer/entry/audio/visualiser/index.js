@@ -23,7 +23,7 @@ export default {
   generateParams() {
     return Object.assign({
       backgroundColor: 0,
-      image: null,
+      sprite: null,
       resolution: {width: 1280, height: 720},
       spectrum: {color: 0xffffff, mode: 1},
       text: {color: 0xffffff, title: this.title, sub: this.sub},

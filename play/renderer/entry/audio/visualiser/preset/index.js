@@ -26,7 +26,6 @@ import image7 from './IMG_20170702_133927.jpg';
 import image8 from './IMG_20170702_135922.jpg';
 import image9 from './logo250c.png';
 
-const path = require('path');
 const presets = [];
 
 [
@@ -41,10 +40,8 @@ const presets = [];
   {image: image8, color: 0xfff2d8},
   {image: image9, color: 0xffffff},
 ].forEach(({image, color}) => {
-  const imagePath = path.join('renderer', image);
-
   for (const mode of [0, 1, 3]) {
-    presets.push({image: imagePath, spectrum: {color, mode}});
+    presets.push({sprite: {image}, spectrum: {color, mode}});
   }
 });
 
